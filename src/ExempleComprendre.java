@@ -20,12 +20,8 @@ public class ExempleComprendre {
 
 	/** MÃ©thode principale */
 	public static void main(String[] args) {
-		// CrÃ©er et afficher un point p1
 		Point p1; // dÃ©clarer une poignÃ©e sur un Point
 		p1 = new Point(3, 4); // crÃ©er un point et l'attacher Ã p1
-		// On peut Ã©crire les deux instructions prÃ©cÃ©dentes sur la
-		// mÃªme ligne. Ceci Ã©vite d'oublier d'initialiser une
-		// poignÃ©e.
 		afficher("p1", p1);
 
 		// CrÃ©er et afficher un point p2
