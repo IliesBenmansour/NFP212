@@ -1,5 +1,5 @@
-Nom       : 
-Prénom    : 
+Nom       : Benmansour
+Prénom    : Ilies
 Groupe TP : 
 
 
@@ -8,7 +8,7 @@ Consigne :  Ci-dessous, répondre à la place des « ... ».
 
 =====[ Temps ]==================================================================
 
-Temps passé sur la V1 : ... heures ... minutes
+Temps passé sur la V1 : 3 heures 30 minutes
 Temps passé sur la V2 : ... heures ... minutes
 Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
 Bien sûr, les temps renseignés ici ne sont pas pris en compte dans la notation.
@@ -19,13 +19,16 @@ Bien sûr, les temps renseignés ici ne sont pas pris en compte dans la notation
 Indiquer la relation UML entre Cercle et le Point centre du cercle.
 -------------------------------------------------------------------
 
-...
+Cercle --> Point 
+
+Un cercle va continir obligatoirement un point centre grace a la classe point 
 
 
 Comment est réalisée l'exigence E18 ?
 -------------------------------------
 
-...
+on arrive a le faire car des le constructeur on ne retourne pas le centre directement mais on crée un nouveau point donc cela ne touche 
+pas directement notre objet cercle
 
 
 
@@ -34,4 +37,4 @@ Comment est réalisée l'exigence E18 ?
 (Facultatif) Donner ici les explications supplémentaires utiles à la
 compréhension du travail rendu.
 
-...
+beaucoup de mal a trouve a le fonctionnement de certaine petite partie comme la methode contient ou j'ai passe presque 1h 
