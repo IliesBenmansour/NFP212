@@ -1,5 +1,9 @@
-import org.junit.*;
-import static org.junit.Assert.*;
+package TP10.src;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * Classe de test pour la méthode proposer de GroupeAgenda.
@@ -14,7 +18,7 @@ public class GroupeAgendaProposerTest extends GroupeAgendaTest {
 		if (g == superGroupe) {
 			assertEquals("OK", xavier.getRendezVous(15));
 		}
-		assertTrue(g.annuler(15));	// remettre dans l'état initial
+		assertTrue(g.annuler(15)); // remettre dans l'état initial
 	}
 
 	@Test
@@ -23,22 +27,22 @@ public class GroupeAgendaProposerTest extends GroupeAgendaTest {
 		testerProposer(superGroupe);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testerProposerIllegalArgumentNull() throws Exception {
 		groupe.proposer(10, null);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testerProposerIllegalArgumentVide() throws Exception {
 		groupe.proposer(10, "");
 	}
 
-	@Test(expected=CreneauInvalideException.class)
+	@Test(expected = CreneauInvalideException.class)
 	public void testerProposerCreaneauInvalideMin() throws Exception {
 		groupe.proposer(Agenda.CRENEAU_MIN - 1, "ERREUR");
 	}
 
-	@Test(expected=CreneauInvalideException.class)
+	@Test(expected = CreneauInvalideException.class)
 	public void testerProposerCreaneauInvalideMax() throws Exception {
 		groupe.proposer(Agenda.CRENEAU_MAX + 1, "ERREUR");
 	}

@@ -1,18 +1,22 @@
-import org.junit.*;
-import static org.junit.Assert.*;
+package TP10.src;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
-  * GroupeAgendaTest 
-  *
-  * @author	Xavier Crégut <Prenom.Nom@enseeiht.fr>
-  */
+ * GroupeAgendaTest
+ *
+ * @author Xavier Crégut <Prenom.Nom@enseeiht.fr>
+ */
 
 public class GroupeAgendaTest extends AgendaTestAbstrait {
 
 	// groupe contient agenda1 et agenda2
 	// superGroupe contient groupe et xavier
 	protected GroupeAgenda groupe;
-	protected Agenda agenda1, agenda2;	// les deux sous-groupes
+	protected Agenda agenda1, agenda2; // les deux sous-groupes
 	protected Agenda xavier;
 	protected GroupeAgenda superGroupe;
 
@@ -24,7 +28,7 @@ public class GroupeAgendaTest extends AgendaTestAbstrait {
 		groupe.ajouter(agenda1);
 		groupe.ajouter(agenda2);
 
-		this.xavier	= new AgendaIndividuel(nom + "-Xavier");
+		this.xavier = new AgendaIndividuel(nom + "-Xavier");
 		this.superGroupe = new GroupeAgenda(nom + "-superGroupe");
 		this.superGroupe.ajouter(this.xavier);
 		this.superGroupe.ajouter(this.groupe);
@@ -36,20 +40,18 @@ public class GroupeAgendaTest extends AgendaTestAbstrait {
 		return nouvelAgenda(nom);
 	}
 
-
 	@Test
 	public void testerInitialisationCorrecte() {
 		assertTrue(groupe == agenda);
 	}
 
-
-	@Test(expected=OccupeException.class)
+	@Test(expected = OccupeException.class)
 	public void testerEnregistrerPasTousLibres() throws Exception {
 		agenda2.enregistrer(10, "SEUL");
 		agenda.enregistrer(10, "OK ?");
 	}
 
-	@Test(expected=OccupeException.class)
+	@Test(expected = OccupeException.class)
 	public void testerEnregistrerPasTousLibresDansSousSousGroupe() throws Exception {
 		agenda2.enregistrer(10, "SEUL");
 		superGroupe.enregistrer(10, "OK ?");
@@ -70,6 +72,5 @@ public class GroupeAgendaTest extends AgendaTestAbstrait {
 		testerAnnulerPasTousOccupe(this.groupe);
 		testerAnnulerPasTousOccupe(this.superGroupe);
 	}
-
 
 }

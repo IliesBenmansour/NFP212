@@ -1,5 +1,9 @@
-import org.junit.*;
-import static org.junit.Assert.*;
+package TP10.src;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+
+import org.junit.Test;
 
 /**
  * Classe de test de ObjetNomme.
@@ -8,6 +12,7 @@ public class ObjetNommeTest {
 
 	/**
 	 * Retourner un objet de type ObjetNomme qui sera utilisé pour les test.
+	 *
 	 * @param nom le nom à utiliser pour l'objet nommé
 	 * @returns un objet nommé du nom fourni
 	 */
@@ -26,17 +31,16 @@ public class ObjetNommeTest {
 		String unNom = "Petit nom";
 		ObjetNomme o = nouvelObjetNomme(unNom);
 		assertEquals(unNom, o.getNom());
-		assertSame("Pourquoi ne pas garder le même nom ?",
-				unNom, o.getNom());
+		assertSame("Pourquoi ne pas garder le même nom ?", unNom, o.getNom());
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testerConstructeurNomNul() {
 		nouvelObjetNomme(null);
 
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testerConstructeurNomVide() {
 		nouvelObjetNomme("");
 
