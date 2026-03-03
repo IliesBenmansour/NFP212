@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
-Nom       : 
-Prénom    : 
+Nom       : Benmansour
+Prénom    : Ilies
 Groupe TP : 
 --------------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ prises en compte dans la notation du projet.
 Il faut remplacer les ... par des nombres.
 
 
-* Temps passé sur la V1 : ... heures ... minutes
+* Temps passé sur la V1 : 3 heures 30 minutes
 * Temps passé sur la V2 : ... heures ... minutes
 
 Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
@@ -55,7 +55,7 @@ Expliquer ce qui permet, dans votre conception, de changer dynamiquement
 Donner ici les explications supplémentaires utiles à la compréhension du
 travail rendu.
 --------------------------------------------------------------------------------
-
+Du mal a faire marcher le testeur.sh 
 ...
 
 --------------------------------------------------------------------------------

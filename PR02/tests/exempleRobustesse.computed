@@ -1,0 +1,2 @@
+Error: Could not find or load main class allumettes.Jouer
+Caused by: java.lang.ClassNotFoundException: allumettes.Jouer
