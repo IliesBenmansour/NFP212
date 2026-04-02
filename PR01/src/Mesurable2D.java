@@ -1,4 +1,3 @@
-package PR01.src;
 
 /**
  * Définir les propriétés d'un élément fermé du plan.

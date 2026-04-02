@@ -1,4 +1,3 @@
-package PR01.src;
 
 import java.awt.Color;
 
