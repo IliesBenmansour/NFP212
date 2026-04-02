@@ -1,34 +1,45 @@
 package allumettes;
 
+/** La classe Arbitre gere le deroulement de la partie entre 2 joueurs. */
 public class Arbitre {
 
-	private Joueur j1;
-	private Joueur j2;
+	private Joueur joueur1;
+	private Joueur joueur2;
 
-	public Arbitre(Joueur j1, Joueur j2) {
-		this.j1 = j1;
-		this.j2 = j2;
+	/** Creer un arbitre avec les deux joueur.
+	 * @param joueur1 le premier joueur
+	 * @param joueur2 le deuxieme joueur
+	 */
+	public Arbitre(Joueur joueur1, Joueur joueur2) {
+		this.joueur1 = joueur1;
+		this.joueur2 = joueur2;
 	}
 
+	/** Lancer et arbitrer la partie.
+	 * @param jeu le jeu (plateau) sur lequel on joue
+	 */
 	public void arbitrer(Jeu jeu) {
-		int tour = 0;
-		Joueur joueur;
+		int numTour = 0; // compteur de tours
+		Joueur joueurCourant;
 
 		while (jeu.getNombreAllumettes() > 0) {
-			if (tour % 2 == 0) {
-				joueur = j1; // si le tour est pair ces le joueur 1 qui joue
+			// on alterne entre joueur 1 et 2
+			if (numTour % 2 == 0) {
+				joueurCourant = this.joueur1;
 			} else {
-				joueur = j2;
+				joueurCourant = this.joueur2;
 			}
 
 			System.out.println("Allumettes restantes : " + jeu.getNombreAllumettes());
 
 			try {
-				int prise = joueur.getPrise(jeu);
-				System.out.println(joueur.getNom() + " prend " + prise
-						+ " allumette" + (prise > 1 ? "s" : "") + "."); // si on prend plus d'une allumette on met un s
+				int prise = joueurCourant.getPrise(jeu);
+				// afficher ce que le joueur a pris (avec le s au pluriel)
+				String s = (prise > 1) ? "s" : "";
+				System.out.println(joueurCourant.getNom() + " prend " + prise
+						+ " allumette" + s + ".");
 				jeu.retirer(prise);
-				tour++;
+				numTour++;
 			} catch (CoupInvalideException e) {
 				System.out.println("Impossible ! Nombre invalide : "
 						+ e.getCoup() + " (" + e.getProbleme() + ")");
@@ -36,12 +47,13 @@ public class Arbitre {
 			System.out.println();
 		}
 
-		if ((tour - 1) % 2 == 0) {
-			System.out.println(j1.getNom() + " perd !"); // si le tour est pair ces le joueur 1 qui perd
-			System.out.println(j2.getNom() + " gagne !"); // si le tour est impair ces le joueur 2 qui gagne
+		// le dernier joueur qui a joué a pris la derniere allumette donc il perd
+		if ((numTour - 1) % 2 == 0) {
+			System.out.println(this.joueur1.getNom() + " perd !");
+			System.out.println(this.joueur2.getNom() + " gagne !");
 		} else {
-			System.out.println(j2.getNom() + " perd !");
-			System.out.println(j1.getNom() + " gagne !");
+			System.out.println(this.joueur2.getNom() + " perd !");
+			System.out.println(this.joueur1.getNom() + " gagne !");
 		}
 	}
 

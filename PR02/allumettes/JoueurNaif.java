@@ -5,22 +5,28 @@ import java.util.Random;
 public class JoueurNaif implements Joueur {
 
 	private String nom;
+	private Random random;
 
 	public JoueurNaif(String nom) {
 		this.nom = nom;
+		this.random = new Random();
 	}
 
+	@Override
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
+	@Override
 	public int getPrise(Jeu jeu) {
-		Random r = new Random();
-		int max = jeu.getNombreAllumettes();
-		if (max > 3) {
-			max = 3;
+		// on prend un nombre aleatoir entre 1 et 3 (ou moin si il reste pas assez)
+		int nbRestantes = jeu.getNombreAllumettes();
+		int max = Jeu.PRISE_MAX;
+		if (nbRestantes < max) {
+			max = nbRestantes;
 		}
-		return r.nextInt(max) + 1;
+		int prise = this.random.nextInt(max) + 1;
+		return prise;
 	}
 
 }

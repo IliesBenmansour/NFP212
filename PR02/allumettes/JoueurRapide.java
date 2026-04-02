@@ -8,16 +8,20 @@ public class JoueurRapide implements Joueur {
 		this.nom = nom;
 	}
 
+	@Override
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
+	@Override
 	public int getPrise(Jeu jeu) {
-		int nb = jeu.getNombreAllumettes();
-		if (nb >= 3) {
-			return 3;
-		} else { //si on depasse le nb max d'allumette (3) on prend le nb restant
-			return nb;
+		// strategie rapide : on prend toujour le max possible
+		int nbRestantes = jeu.getNombreAllumettes();
+		if (nbRestantes >= Jeu.PRISE_MAX) {
+			return Jeu.PRISE_MAX;
+		} else {
+			// si il reste moin que 3 on prend ce qui reste
+			return nbRestantes;
 		}
 	}
 
