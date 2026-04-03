@@ -1,4 +1,37 @@
-Date de l'évaluation : ven. 06 mars 2026 16:15:06 CET
+Date de l'évaluation : ven. 03 avril 2026 14:19:42 CEST
 
-package PR01.src;
-Il ne doit pas y avoir de `package`. Il faut utiliser le paquetage anonyme.
+Il est INTERDIT de changer Point.java !
+Il est INTERDIT de changer Mesurable2D.java !
+Il est INTERDIT de changer SujetCercleTest.java !
+Il est INTERDIT de changer RobustesseCercleTest.java !
+Il est INTERDIT de changer FormeCercleTest.java !
+
+Compilation de Cercle.java : OK.
+
+Types d'erreurs checkstyle : 2	(voir evaluation1/Cercle.checkstyle)
+
+Résultat de recherche de similitudes sur Cercle.java dans evaluation1/Cercle.sim
+
+JavaDoc automatique de Cercle : ko	(voir evaluation1/Cercle.javadoc)
+
+Un constructeur devrait appeler l'autre.
+
+Test SujetCercleTest : OK (14 tests)	(voir evaluation1/SujetCercleTest.txt)
+Test RobustesseCercleTest : OK (20 tests)	(voir evaluation1/RobustesseCercleTest.txt)
+Test FormeCercleTest : Tests run: 12,  Failures: 3	(voir evaluation1/FormeCercleTest.txt)
+    1) testerC12(FormeCercleTest)
+        AssertionError: PI : Pourquoi pas public ?
+    2) testerE6(FormeCercleTest)
+        NoClassDefFoundError: Mesurable2D
+    3) testerE6bis(FormeCercleTest)
+        AssertionError: Cercle doit directement réaliser Mesurable2D !
+
+Test Forme2CercleTest : Tests run: 9,  Failures: 1	(voir evaluation1/Forme2CercleTest.txt)
+    1) testContientDistance(Forme2CercleTest)
+        AssertionError: Point.distance devrait être utilisé dans contient
+
+
+ComplementsCercleTest : non modifiée (ok)
+
+Pas de mise à jour de CercleTest.java sur le serveur Git. Faire un git push... !
+CercleTest.java ne compile pas !!!

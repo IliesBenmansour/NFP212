@@ -1,0 +1,41 @@
+File Cercle.java: 615 tokens, 202 lines (not NL-terminated)
+Total input: 1 file (1 new, 0 old), 615 tokens
+
+Cercle.java: line 41-45 [63]
+Cercle.java: line 61-65
+< 		double cx = (point1.getX() + point2.getX()) / 2;
+< 		double cy = (point1.getY() + point2.getY()) / 2;
+< 		this.centre = new Point(cx, cy);
+< 		this.rayon = point1.distance(point2) / 2;
+< 		this.color = Color.blue;
+---
+> 		double cx = (point1.getX() + point2.getX()) / 2;
+> 		double cy = (point1.getY() + point2.getY()) / 2;
+> 		this.centre = new Point(cx, cy);
+> 		this.rayon = point1.distance(point2) / 2;
+> 		this.color = couleur;
+
+Cercle.java: line 36-39 [34]
+Cercle.java: line 75-78
+< 	public Cercle(Point point1, Point point2) {
+< 		assert point1 != null : "le point 1 ne doit pas = null";
+< 		assert point2 != null : "le point 2 ne doit pas = null";
+< 		assert point1.distance(point2) > 0 : "les deux point doivent etre different";
+---
+> 	public static Cercle creerCercle(Point point1, Point point2) {
+> 		assert point1 != null : "le point 1 ne doit pas = null";
+> 		assert point2 != null : "le point 2 ne doit pas = null";
+> 		assert point1.distance(point2) > 0 : "les deux point doivent etre different";
+
+Cercle.java: line 56-59 [32]
+Cercle.java: line 75-78
+< 	public Cercle(Point point1, Point point2, Color couleur) {
+< 		assert point1 != null : "le point 1 ne doit pas = null";
+< 		assert point2 != null : "le point 2 ne doit pas = null";
+< 		assert point1.distance(point2) > 0 : "les deux point doivent etre different";
+---
+> 	public static Cercle creerCercle(Point point1, Point point2) {
+> 		assert point1 != null : "le point 1 ne doit pas = null";
+> 		assert point2 != null : "le point 2 ne doit pas = null";
+> 		assert point1.distance(point2) > 0 : "les deux point doivent etre different";
+
