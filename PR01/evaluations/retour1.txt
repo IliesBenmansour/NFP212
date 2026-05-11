@@ -1,0 +1,10 @@
+LISEZ-MOI.txt :
+    - Question 1 : Pas la bonne réponse
+    - Question 2 : Réponse incomplète
+Tenir compte du retour automatique.
+Tenir compte du retour général.
+
+contient : on peut faire beaucoup plus simple...
+Que signifie le code que vous avez écrit ?
+
+
