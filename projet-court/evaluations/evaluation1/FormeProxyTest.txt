@@ -6,7 +6,7 @@ Suppositions faites :
  - jeuReel     = class allumettes.Plateau
 
 
-Time: 0,021
+Time: 0,028
 There were 2 failures:
 1) testerProcuration(FormeProxyTest)
 java.lang.AssertionError: allumettes.Procuration : Pourquoi plusieurs attributs ?

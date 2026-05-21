@@ -1,18 +1,18 @@
 File allumettes/JoueurRapide.java: 77 tokens, 28 lines (not NL-terminated)
-File allumettes/Arbitre.java: 333 tokens, 74 lines
+File allumettes/Arbitre.java: 366 tokens, 80 lines
 File allumettes/CoupInvalideException.java: 68 tokens, 39 lines
 File allumettes/Joueur.java: 17 tokens, 9 lines
 File allumettes/JoueurExpert.java: 80 tokens, 31 lines
 File allumettes/OperationInterditeException.java: 21 tokens, 9 lines
 File allumettes/JoueurNaif.java: 100 tokens, 32 lines (not NL-terminated)
 File allumettes/ConfigurationException.java: 21 tokens, 16 lines
-File allumettes/Jouer.java: 437 tokens, 104 lines
+File allumettes/Jouer.java: 414 tokens, 101 lines
 File allumettes/Jeu.java: 23 tokens, 21 lines
 File allumettes/Plateau.java: 118 tokens, 33 lines
 File allumettes/JoueurHumain.java: 160 tokens, 49 lines
 File allumettes/JoueurTricheur.java: 133 tokens, 44 lines
 File allumettes/Procuration.java: 110 tokens, 49 lines
-Total input: 14 files (14 new, 0 old), 1698 tokens
+Total input: 14 files (14 new, 0 old), 1708 tokens
 
 allumettes/JoueurRapide.java: line 1-19 [55]
 allumettes/JoueurExpert.java: line 1-22
@@ -115,20 +115,20 @@ allumettes/JoueurTricheur.java: line 19-29
 > 	public int getPrise(Jeu jeu) {
 > 		System.out.println("[Je triche...]");
 
-allumettes/Arbitre.java: line 65-68 [34]
-allumettes/Arbitre.java: line 68-71
-< 		if ((numTour - 1) % 2 == 0) {
-< 			System.out.println(this.joueur1.getNom() + " perd !");
-< 			System.out.println(this.joueur2.getNom() + " gagne !");
-< 		} else {
+allumettes/Arbitre.java: line 67-70 [34]
+allumettes/Arbitre.java: line 70-73
+< 			if ((numTour - 1) % 2 == 0) {
+< 				System.out.println(this.joueur1.getNom() + " perd !");
+< 				System.out.println(this.joueur2.getNom() + " gagne !");
+< 			} else {
 ---
-> 		} else {
-> 			System.out.println(this.joueur2.getNom() + " perd !");
-> 			System.out.println(this.joueur1.getNom() + " gagne !");
-> 		}
+> 			} else {
+> 				System.out.println(this.joueur2.getNom() + " perd !");
+> 				System.out.println(this.joueur1.getNom() + " gagne !");
+> 			}
 
-allumettes/Jouer.java: line 61-66 [34]
-allumettes/Jouer.java: line 70-75
+allumettes/Jouer.java: line 58-63 [34]
+allumettes/Jouer.java: line 67-72
 < 		if (strategie.equals("naif")) {
 < 			return new JoueurNaif(nom);
 < 		}

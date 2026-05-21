@@ -1,4 +1,4 @@
-Date de l'évaluation : jeu. 21 mai 2026 14:42:17 CEST
+Date de l'évaluation : jeu. 21 mai 2026 15:24:14 CEST
 
 Nombre de similitudes : 6	(voir evaluation1/sim_java.txt)
 Les similitudes indiquent généralement du code à restructurer.
@@ -10,16 +10,14 @@ Classe OperationInterditeException : OperationInterditeException (ok)
 Procuration sur le jeu réel : allumettes/Procuration.java (ok)
 
 OperationInterditeException, levée dans : allumettes/Procuration.java (ok)
-OperationInterditeException, récupérée dans : allumettes/Jouer.java (ERREUR)
-	Pas récupérée dans la bonne classe !
-
+OperationInterditeException, récupérée dans : allumettes/Arbitre.java (ok)
 
 Throwable, Exception et RuntimeException ne devraient pas être récupérées car trop générales... ok
 
 AssertionError ne doit pas être récupérée... ok
 
 Autres exceptions récupérées :
-  | allumettes/Arbitre.java:57:         } catch (CoupInvalideException e) {
+  | allumettes/Arbitre.java:59:             } catch (CoupInvalideException e) {
   | allumettes/Jouer.java:41:       } catch (ConfigurationException e) {
   | allumettes/JoueurHumain.java:34:            } catch (CoupInvalideException e) {
   | allumettes/JoueurHumain.java:43:        } catch (NumberFormatException e) {
@@ -28,7 +26,7 @@ Autres exceptions récupérées :
 
 Utilisation de 'Scanner' : ok
   | allumettes/Jouer.java:29:           Scanner scanner = new Scanner(System.in);
-  | allumettes/Jouer.java:60:           Scanner scanner) {
+  | allumettes/Jouer.java:57:           Scanner scanner) {
   | allumettes/JoueurHumain.java:11:    private Scanner sc;
   | allumettes/JoueurHumain.java:17:    public JoueurHumain(String nom, Scanner sc) {
 

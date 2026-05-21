@@ -421,7 +421,7 @@ Le programme ne se termine pas.
 
 E
 
-Time: 3,519
+Time: 3,425
 There were 8 failures:
 1) testerSansStrategieConfiant(RobustesseTest)
 java.lang.AssertionError: Le programme s'est terminé sur une exception non récupérée.

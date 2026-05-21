@@ -6,7 +6,7 @@ Suppositions faites :
  - jeuReel     = class allumettes.Plateau
 
 
-Time: 0,013
+Time: 0,016
 There was 1 failure:
 1) testerJeuReel(FormeC9Test)
 java.lang.AssertionError: allumettes.Plateau : C9 non respectée.

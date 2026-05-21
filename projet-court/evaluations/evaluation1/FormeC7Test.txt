@@ -6,7 +6,7 @@ Suppositions faites :
  - jeuReel     = class allumettes.Plateau
 
 
-Time: 0,014
+Time: 0,015
 There was 1 failure:
 1) testerRespectArchitecture(FormeC7Test)
 java.lang.AssertionError: Constructeur manquant dans la classe allumettes.Arbitre : allumettes.Arbitre(allumettes.Joueur, allumettes.Joueur)
