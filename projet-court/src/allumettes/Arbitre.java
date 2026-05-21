@@ -25,7 +25,7 @@ public class Arbitre {
 	/** Lancer et arbitrer la partie.
 	 *  @param jeu le jeu reel sur lequel on joue (modifie au fil de la partie)
 	 */
-	public void arbitrer(Plateau jeu) {
+	public void arbitrer(Jeu jeu) {
 		Procuration proc1 = new Procuration(jeu, this.confiant,
 				this.joueur1.getNom());
 		Procuration proc2 = new Procuration(jeu, this.confiant,
