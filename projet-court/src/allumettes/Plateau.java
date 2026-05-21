@@ -1,6 +1,6 @@
 package allumettes;
 
-/** Le plateau de jeu avec les allumettes. */
+// Le plateau de jeu avec les allumettes. 
 public class Plateau implements Jeu {
 
 	// nombre d'allumettes au depart
@@ -28,6 +28,19 @@ public class Plateau implements Jeu {
 		}
 		if (nb > PRISE_MAX) {
 			throw new CoupInvalideException(nb, "> " + PRISE_MAX);
+		}
+		this.nbAllumettes = this.nbAllumettes - nb;
+	}
+
+	/** @param nb nombre d'allumettes a voler (1 a nbAllumettes)
+	 *  @throws CoupInvalideException si nb &lt; 1 ou nb &gt; nbAllumettes
+	 */
+	void voler(int nb) throws CoupInvalideException {
+		if (nb < 1) {
+			throw new CoupInvalideException(nb, "< 1");
+		}
+		if (nb > this.nbAllumettes) {
+			throw new CoupInvalideException(nb, "> " + this.nbAllumettes);
 		}
 		this.nbAllumettes = this.nbAllumettes - nb;
 	}
