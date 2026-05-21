@@ -1,0 +1,29 @@
+JUnit version 4.12
+.E
+
+Suppositions faites :
+ - procuration = class allumettes.Procuration
+ - jeuReel     = class allumettes.Plateau
+
+
+Time: 0,013
+There was 1 failure:
+1) testerC14(FormeC14Test)
+java.lang.AssertionError: Joueur : Est-ce que C14 peut être réalisée ?
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at FormeC14Test.testerC14(FormeC14Test.java:23)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
