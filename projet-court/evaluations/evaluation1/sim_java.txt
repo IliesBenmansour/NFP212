@@ -8,11 +8,11 @@ File allumettes/JoueurNaif.java: 100 tokens, 32 lines (not NL-terminated)
 File allumettes/ConfigurationException.java: 21 tokens, 16 lines
 File allumettes/Jouer.java: 437 tokens, 104 lines
 File allumettes/Jeu.java: 23 tokens, 21 lines
-File allumettes/Plateau.java: 178 tokens, 48 lines
+File allumettes/Plateau.java: 118 tokens, 33 lines
 File allumettes/JoueurHumain.java: 160 tokens, 49 lines
-File allumettes/JoueurTricheur.java: 109 tokens, 42 lines
-File allumettes/Procuration.java: 102 tokens, 45 lines
-Total input: 14 files (14 new, 0 old), 1726 tokens
+File allumettes/JoueurTricheur.java: 133 tokens, 44 lines
+File allumettes/Procuration.java: 110 tokens, 49 lines
+Total input: 14 files (14 new, 0 old), 1698 tokens
 
 allumettes/JoueurRapide.java: line 1-19 [55]
 allumettes/JoueurExpert.java: line 1-22
@@ -59,35 +59,8 @@ allumettes/JoueurExpert.java: line 1-22
 > 	public int getPrise(Jeu jeu) {
 > 		int n = jeu.getNombreAllumettes();
 
-allumettes/Plateau.java: line 21-28 [47]
-allumettes/Plateau.java: line 38-44
-< 	public void retirer(int nb) throws CoupInvalideException {
-< 		// verifier que le nb est valide
-< 		if (nb < 1) {
-< 			throw new CoupInvalideException(nb, "< 1");
-< 		}
-< 		if (nb > this.nbAllumettes) {
-< 			throw new CoupInvalideException(nb, "> " + this.nbAllumettes);
-< 		}
----
-> 	void voler(int nb) throws CoupInvalideException {
-> 		if (nb < 1) {
-> 			throw new CoupInvalideException(nb, "< 1");
-> 		}
-> 		if (nb > this.nbAllumettes) {
-> 			throw new CoupInvalideException(nb, "> " + this.nbAllumettes);
-> 		}
-
-allumettes/JoueurExpert.java: line 1-21 [47]
-allumettes/JoueurTricheur.java: line 1-26
-< package allumettes;
-< 
-< /** Joueur expert : applique la strategie gagnante du jeu des 13 allumettes.
-<  *  Les positions perdantes pour celui qui doit jouer sont les multiples
-<  *  de 4 plus 1 (1, 5, 9, 13)
-<  */
-< public class JoueurExpert implements Joueur {
-< 
+allumettes/JoueurExpert.java: line 9-21 [39]
+allumettes/JoueurTricheur.java: line 16-28
 < 	private String nom;
 < 
 < 	public JoueurExpert(String nom) {
@@ -102,19 +75,6 @@ allumettes/JoueurTricheur.java: line 1-26
 < 	@Override
 < 	public int getPrise(Jeu jeu) {
 ---
-> package allumettes;
-> 
-> /** Joueur tricheur : retire directement des allumettes via la procuration
->  *  pour amener la position a 2 allumettes restantes avant de prendre une
->  *  derniere allumette officiellement, laissant l'adversaire devoir prendre
->  *  la derniere.
->  *  <p>
->  *  Si la procuration n'est pas en mode confiant, l'appel a {@code retirer}
->  *  leve {@link OperationInterditeException} qui remonte jusqu'au point
->  *  d'entree (Jouer) pour abandonner la partie.
->  */
-> public class JoueurTricheur implements Joueur {
-> 
 > 	private String nom;
 > 
 > 	public JoueurTricheur(String nom) {
@@ -130,7 +90,7 @@ allumettes/JoueurTricheur.java: line 1-26
 > 	public int getPrise(Jeu jeu) {
 
 allumettes/JoueurHumain.java: line 19-29 [35]
-allumettes/JoueurTricheur.java: line 17-27
+allumettes/JoueurTricheur.java: line 19-29
 < 		this.sc = sc;
 < 	}
 < 
@@ -182,23 +142,6 @@ allumettes/Jouer.java: line 70-75
 > 		if (strategie.equals("tricheur")) {
 > 			return new JoueurTricheur(nom);
 > 		}
-
-allumettes/JoueurHumain.java: line 33-38 [26]
-allumettes/JoueurTricheur.java: line 31-37
-< 				jeu.retirer(1);
-< 			} catch (CoupInvalideException e) {
-< 				// ne devrait pas arriver tant qu'il reste >= 1 allumette
-< 			}
-< 			System.out.println("[Une allumette en moins, plus que "
-< 					+ jeu.getNombreAllumettes() + ". Chut !]");
----
-> 				jeu.retirer(nb - 2);
-> 			} catch (CoupInvalideException e) {
-> 				// ne devrait pas arriver (nb-2 >= 1 et <= nb)
-> 			}
-> 			// Si on arrive ici, la triche a ete acceptee (mode confiant).
-> 			System.out.println("[Allumettes restantes : "
-> 					+ jeu.getNombreAllumettes() + "]");
 
 allumettes/JoueurNaif.java: line 13-21 [24]
 allumettes/JoueurHumain.java: line 20-28

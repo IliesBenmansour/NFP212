@@ -1,9 +1,9 @@
-Date de l'évaluation : jeu. 21 mai 2026 13:27:28 CEST
+Date de l'évaluation : jeu. 21 mai 2026 14:42:17 CEST
 
-Nombre de similitudes : 8	(voir evaluation1/sim_java.txt)
+Nombre de similitudes : 6	(voir evaluation1/sim_java.txt)
 Les similitudes indiquent généralement du code à restructurer.
 
-Erreurs checkstyle (différentes/types) : 3/3	(voir evaluation1//checkstyle.txt)
+Erreurs checkstyle (différentes/types) : 2/2	(voir evaluation1//checkstyle.txt)
 
 Classe OperationInterditeException : OperationInterditeException (ok)
 
@@ -23,7 +23,8 @@ Autres exceptions récupérées :
   | allumettes/Jouer.java:41:       } catch (ConfigurationException e) {
   | allumettes/JoueurHumain.java:34:            } catch (CoupInvalideException e) {
   | allumettes/JoueurHumain.java:43:        } catch (NumberFormatException e) {
-  | allumettes/JoueurTricheur.java:32:          } catch (CoupInvalideException e) {
+  | allumettes/JoueurTricheur.java:35:          } catch (CoupInvalideException e) {
+  | allumettes/Procuration.java:44:     } catch (CoupInvalideException e) {
 
 Utilisation de 'Scanner' : ok
   | allumettes/Jouer.java:29:           Scanner scanner = new Scanner(System.in);
@@ -88,7 +89,7 @@ Test exemplePresqueSujet : ok
 Vérification du respect du diagramme de classe...
 Test FormeC7Test : Tests run: 1,  Failures: 1	(voir evaluation1/FormeC7Test.txt)
     1) testerRespectArchitecture(FormeC7Test)
-        Méthode manquante dans la classe allumettes.Arbitre : arbitrer(allumettes.Jeu)
+        Constructeur manquant dans la classe allumettes.Arbitre : allumettes.Arbitre(allumettes.Joueur, allumettes.Joueur)
 
 Test FormeC9Test : Tests run: 1,  Failures: 1	(voir evaluation1/FormeC9Test.txt)
     1) testerJeuReel(FormeC9Test)
@@ -101,7 +102,7 @@ Test FormeC14Test : Tests run: 1,  Failures: 1	(voir evaluation1/FormeC14Test.tx
 Test FormeExceptionsTest : OK (1 test)	(voir evaluation1/FormeExceptionsTest.txt)
 Test FormeProxyTest : Tests run: 2,  Failures: 2	(voir evaluation1/FormeProxyTest.txt)
     1) testerProcuration(FormeProxyTest)
-        allumettes.Procuration.retirer : Est-il logique qu'elle dise pouvoir propager CoupInvalideException ?
+        allumettes.Procuration : Pourquoi plusieurs attributs ?
     2) testerProcurationFonctionnement(FormeProxyTest)
         allumettes.Procuration.retirer : Pas l'exception attendue, AssertionError au lieu de OperationInterditeException.
 
