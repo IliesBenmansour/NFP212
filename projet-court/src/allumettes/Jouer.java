@@ -43,9 +43,6 @@ public class Jouer {
 			System.out.println("Erreur : " + e.getMessage());
 			afficherUsage();
 			System.exit(1);
-		} catch (OperationInterditeException e) {
-			System.out.println("Abandon de la partie car "
-					+ e.getMessage() + " triche !");
 		}
 	}
 
