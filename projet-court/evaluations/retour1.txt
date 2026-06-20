@@ -1,0 +1,12 @@
+Les Q# font référence aux questions posées dans le fichier LISEZ-MOI.txt.
+Les pénalités '+' sont évaluées manuellement (enseignant de TP).
+Les pénalités '+' peuvent donner lieu à des pénalités définitives en V1 (si le travail est jugé insuffisant).
+
++ C14 : Impossible de changer dynamiquement de stratégie (cf Q3)
+
++ Autres remarques
+    - Pourquoi créer deux procutions ? Pourquoi tous ces paramètres ?
+    - Utiliser switch plutôt qu'une série de if (strategie.equals(...)).
+
++ Correction sur les pénalités automatiques : 0
+
