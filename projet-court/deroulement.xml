@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE deroulement SYSTEM "src/allumettes/deroulement.dtd">
+<deroulement>
+  <coup joueur="Alice" numero="1" prises="1"/>
+  <coup joueur="Bob" numero="2" prises="1"/>
+  <gagnant nom="Alice"/>
+</deroulement>

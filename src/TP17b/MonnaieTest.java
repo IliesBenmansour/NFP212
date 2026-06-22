@@ -1,4 +1,6 @@
-/** Classe regroupant les tests unitaires de la classe Monnaie.  */
+package TP17b;
+
+/** Classe regroupant les tests unitaires de la classe Monnaie. */
 public class MonnaieTest {
 
 	protected Monnaie m1;

@@ -1,10 +1,14 @@
-import java.lang.reflect.*;
-import java.util.*;
+package TP17b;
 
-/** L'objectif est de faire un lanceur simple sans utiliser toutes les clases
-  * de notre architecture JUnit.   Il permet juste de valider la compréhension
-  * de l'introspection en Java.
-  */
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * L'objectif est de faire un lanceur simple sans utiliser toutes les clases de
+ * notre architecture JUnit. Il permet juste de valider la compréhension de
+ * l'introspection en Java.
+ */
 public class LanceurIndependant {
 	private int nbTestsLances;
 	private int nbErreurs;
@@ -12,7 +16,7 @@ public class LanceurIndependant {
 	private List<Throwable> erreurs = new ArrayList<>();
 
 	public LanceurIndependant(String... nomsClasses) {
-	    System.out.println();
+		System.out.println();
 
 		// Lancer les tests pour chaque classe
 		for (String nom : nomsClasses) {
@@ -36,35 +40,30 @@ public class LanceurIndependant {
 
 		// Afficher un bilan
 		System.out.println();
-		System.out.printf("%d tests lancés dont %d échecs et %d erreurs.\n",
-				nbTestsLances, nbEchecs, nbErreurs);
+		System.out.printf("%d tests lancés dont %d échecs et %d erreurs.\n", nbTestsLances, nbEchecs, nbErreurs);
 	}
-
 
 	public int getNbTests() {
 		return this.nbTestsLances;
 	}
 
-
 	public int getNbErreurs() {
 		return this.nbErreurs;
 	}
-
 
 	public int getNbEchecs() {
 		return this.nbEchecs;
 	}
 
-
 	private void testerUneClasse(String nomClasse)
-		throws ClassNotFoundException, InstantiationException,
-						  IllegalAccessException
-	{
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		// Récupérer la classe
+		Class c = Class.forName(nomClasse);
 
 		// Récupérer les méthodes "preparer" et "nettoyer"
 		Method preparer = null;
 		Method nettoyer = null;
+		List<Method> tests = new ArrayList<>();
 
 		// Instancier l'objet qui sera le récepteur des tests
 		Object objet = null;
@@ -74,6 +73,7 @@ public class LanceurIndependant {
 
 	public static void main(String... args) {
 		LanceurIndependant lanceur = new LanceurIndependant(args);
+
 	}
 
 }

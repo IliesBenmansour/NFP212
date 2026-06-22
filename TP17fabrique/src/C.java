@@ -1,3 +1,4 @@
+
 class C {
 	public C m(double d) {return null;}
 	public static C n(C autre) {return null;}

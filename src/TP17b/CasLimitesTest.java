@@ -1,7 +1,11 @@
-/** Tester quelques cas limites.
-  * @author	Xavier Crégut
-  * @version	$Revision$
-  */
+package TP17b;
+
+/**
+ * Tester quelques cas limites.
+ *
+ * @author Xavier Crégut
+ * @version $Revision$
+ */
 public class CasLimitesTest {
 
 	public void testOK() {

@@ -1,0 +1,13 @@
+<!ELEMENT deroulement (coup*, (gagnant | triche))>
+
+<!ELEMENT coup EMPTY>
+<!ATTLIST coup
+    numero NMTOKEN #REQUIRED
+    joueur CDATA   #REQUIRED
+    prises NMTOKEN #REQUIRED>
+
+<!ELEMENT gagnant EMPTY>
+<!ATTLIST gagnant nom CDATA #REQUIRED>
+
+<!ELEMENT triche EMPTY>
+<!ATTLIST triche joueur CDATA #REQUIRED>

@@ -1,8 +1,11 @@
-/** ErreurTest est un programme de test qui définit trois méthodes de test
-  * dont une provoque une erreur.
-  */
+package TP17b;
+
+/**
+ * ErreurTest est un programme de test qui définit trois méthodes de test dont
+ * une provoque une erreur.
+ */
 public class ErreurTest {
-	
+
 	public void tester1() {
 	}
 
