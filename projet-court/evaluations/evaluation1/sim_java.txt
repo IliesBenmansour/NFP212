@@ -1,5 +1,5 @@
 File allumettes/JoueurRapide.java: 77 tokens, 28 lines (not NL-terminated)
-File allumettes/Arbitre.java: 366 tokens, 80 lines
+File allumettes/Arbitre.java: 755 tokens, 159 lines
 File allumettes/CoupInvalideException.java: 68 tokens, 39 lines
 File allumettes/Joueur.java: 17 tokens, 9 lines
 File allumettes/JoueurExpert.java: 80 tokens, 31 lines
@@ -12,7 +12,7 @@ File allumettes/Plateau.java: 118 tokens, 33 lines
 File allumettes/JoueurHumain.java: 160 tokens, 49 lines
 File allumettes/JoueurTricheur.java: 133 tokens, 44 lines
 File allumettes/Procuration.java: 110 tokens, 49 lines
-Total input: 14 files (14 new, 0 old), 1708 tokens
+Total input: 14 files (14 new, 0 old), 2097 tokens
 
 allumettes/JoueurRapide.java: line 1-19 [55]
 allumettes/JoueurExpert.java: line 1-22
@@ -58,6 +58,20 @@ allumettes/JoueurExpert.java: line 1-22
 > 	@Override
 > 	public int getPrise(Jeu jeu) {
 > 		int n = jeu.getNombreAllumettes();
+
+allumettes/Arbitre.java: line 92-96 [43]
+allumettes/Arbitre.java: line 96-100
+< 			if ((numTour - 1) % 2 == 0) {
+< 				System.out.println(this.joueur1.getNom() + " perd !");
+< 				System.out.println(this.joueur2.getNom() + " gagne !");
+< 				nomGagnant = this.joueur2.getNom();
+< 			} else {
+---
+> 			} else {
+> 				System.out.println(this.joueur2.getNom() + " perd !");
+> 				System.out.println(this.joueur1.getNom() + " gagne !");
+> 				nomGagnant = this.joueur1.getNom();
+> 			}
 
 allumettes/JoueurExpert.java: line 9-21 [39]
 allumettes/JoueurTricheur.java: line 16-28
@@ -115,17 +129,23 @@ allumettes/JoueurTricheur.java: line 19-29
 > 	public int getPrise(Jeu jeu) {
 > 		System.out.println("[Je triche...]");
 
-allumettes/Arbitre.java: line 67-70 [34]
-allumettes/Arbitre.java: line 70-73
-< 			if ((numTour - 1) % 2 == 0) {
-< 				System.out.println(this.joueur1.getNom() + " perd !");
-< 				System.out.println(this.joueur2.getNom() + " gagne !");
-< 			} else {
+allumettes/Arbitre.java: line 127-133 [35]
+allumettes/Arbitre.java: line 133-139
+< 		coup.setAttribute("prises", Integer.toString(prises));
+< 		this.racine.appendChild(coup);
+< 	}
+< 
+< 	private void ajouterGagnant(String nom) {
+< 		Element gagnant = this.doc.createElement("gagnant");
+< 		gagnant.setAttribute("nom", nom);
 ---
-> 			} else {
-> 				System.out.println(this.joueur2.getNom() + " perd !");
-> 				System.out.println(this.joueur1.getNom() + " gagne !");
-> 			}
+> 		gagnant.setAttribute("nom", nom);
+> 		this.racine.appendChild(gagnant);
+> 	}
+> 
+> 	private void ajouterTriche(String nomTricheur) {
+> 		Element triche = this.doc.createElement("triche");
+> 		triche.setAttribute("joueur", nomTricheur);
 
 allumettes/Jouer.java: line 58-63 [34]
 allumettes/Jouer.java: line 67-72
@@ -164,4 +184,18 @@ allumettes/JoueurHumain.java: line 20-28
 > 
 > 	@Override
 > 	public int getPrise(Jeu jeu) {
+
+allumettes/Arbitre.java: line 117-121 [24]
+allumettes/Arbitre.java: line 153-157
+< 			this.doc.appendChild(this.racine);
+< 		} catch (ParserConfigurationException e) {
+< 			System.err.println("Erreur initialisation XML : " + e.getMessage());
+< 		}
+< 	}
+---
+> 					new StreamResult(new File(FICHIER_XML)));
+> 		} catch (TransformerException e) {
+> 			System.err.println("Erreur ecriture XML : " + e.getMessage());
+> 		}
+> 	}
 

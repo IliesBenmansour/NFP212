@@ -1,6 +1,6 @@
-Date de l'évaluation : jeu. 21 mai 2026 15:24:14 CEST
+Date de l'évaluation : lun. 22 juin 2026 19:07:13 CEST
 
-Nombre de similitudes : 6	(voir evaluation1/sim_java.txt)
+Nombre de similitudes : 8	(voir evaluation1/sim_java.txt)
 Les similitudes indiquent généralement du code à restructurer.
 
 Erreurs checkstyle (différentes/types) : 2/2	(voir evaluation1//checkstyle.txt)
@@ -17,7 +17,9 @@ Throwable, Exception et RuntimeException ne devraient pas être récupérées ca
 AssertionError ne doit pas être récupérée... ok
 
 Autres exceptions récupérées :
-  | allumettes/Arbitre.java:59:             } catch (CoupInvalideException e) {
+  | allumettes/Arbitre.java:83:             } catch (CoupInvalideException e) {
+  | allumettes/Arbitre.java:118:        } catch (ParserConfigurationException e) {
+  | allumettes/Arbitre.java:154:        } catch (TransformerException e) {
   | allumettes/Jouer.java:41:       } catch (ConfigurationException e) {
   | allumettes/JoueurHumain.java:34:            } catch (CoupInvalideException e) {
   | allumettes/JoueurHumain.java:43:        } catch (NumberFormatException e) {

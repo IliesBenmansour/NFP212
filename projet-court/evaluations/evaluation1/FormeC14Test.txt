@@ -6,7 +6,7 @@ Suppositions faites :
  - jeuReel     = class allumettes.Plateau
 
 
-Time: 0,014
+Time: 0,012
 There was 1 failure:
 1) testerC14(FormeC14Test)
 java.lang.AssertionError: Joueur : Est-ce que C14 peut être réalisée ?
