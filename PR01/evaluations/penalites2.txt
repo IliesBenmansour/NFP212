@@ -1,0 +1,47 @@
+Date de l'évaluation : mar. 14 juil. 2026 20:23:17 CEST
+
+Il est INTERDIT de changer Point.java !
+Il est INTERDIT de changer Mesurable2D.java !
+Il est INTERDIT de changer SujetCercleTest.java !
+Il est INTERDIT de changer RobustesseCercleTest.java !
+Il est INTERDIT de changer FormeCercleTest.java !
+
+Compilation de Cercle.java : OK.
+
+Types d'erreurs checkstyle : 2	(pénalité : 1)	(voir penalites2/Cercle.checkstyle)
+
+Résultat de recherche de similitudes sur Cercle.java dans evaluation2/home/cregut/ens/modules/nfp121/git/tps/ilies/PR01/evaluations/penalites2/Cercle.sim
+
+JavaDoc automatique de Cercle : ko	(voir penalites2/Cercle.javadoc)
+
+Un constructeur devrait appeler l'autre.	(pénalité : 1)
+
+Test SujetCercleTest : OK (16 tests)	(voir penalites2/SujetCercleTest.txt)
+Test RobustesseCercleTest : OK (20 tests)	(voir penalites2/RobustesseCercleTest.txt)
+Test AssertionsConstructeursCercleTest : OK (2 tests)	(voir penalites2/AssertionsConstructeursCercleTest.txt)
+Test FormeCercleTest : Tests run: 12,  Failures: 3	(pénalité : 3)	(voir penalites2/FormeCercleTest.txt)
+    1) testerC12(FormeCercleTest)
+        AssertionError: PI : Pourquoi pas public ?
+    2) testerE6(FormeCercleTest)
+        NoClassDefFoundError: Mesurable2D
+    3) testerE6bis(FormeCercleTest)
+        AssertionError: Cercle doit directement réaliser Mesurable2D !
+
+Test Forme2CercleTest : Tests run: 9,  Failures: 1	(pénalité : 1)	(voir penalites2/Forme2CercleTest.txt)
+    1) testContientDistance(Forme2CercleTest)
+        AssertionError: Point.distance devrait être utilisé dans contient
+
+Test Complements2CercleTest : Tests run: 3,  Failures: 1	(pénalité : 1)	(voir penalites2/Complements2CercleTest.txt)
+    1) testerE11couleurPoint(Complements2CercleTest)
+        AssertionError: E11 : Le centre n'a pas la même couleur que le point passé en paramètre. expected:<java.awt.Color[r=255,g=0,b=255]> but was:<java.awt.Color[r=0,g=255,b=0]>
+
+Test ConstructeursCercleTest : Tests run: 5,  Failures: 1	(pénalité : 1)	(voir penalites2/ConstructeursCercleTest.txt)
+    1) testerE14(ConstructeursCercleTest)
+        AssertionError: E14 : problÃ¨me sur le centre (y) expected:<1.0> but was:<2.5>
+
+
+ComplementsCercleTest : non modifiée (ok)
+
+Pas de mise à jour de CercleTest.java sur le serveur Git. Faire un git push... !	(pénalité : 10)
+CercleTest.java ne compile pas !!!
+Total pénalités : 18
