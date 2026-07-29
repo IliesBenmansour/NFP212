@@ -1,0 +1,5 @@
+Début de la vérification...
+[ERROR] JoueurRapide.java:1: Il manque un caractère NewLine à la fin du fichier. [NewlineAtEndOfFile]
+[ERROR] JoueurExpert.java:23:31: '4' devrait être défini comme une constante. [MagicNumber]
+[ERROR] JoueurNaif.java:1: Il manque un caractère NewLine à la fin du fichier. [NewlineAtEndOfFile]
+Vérification terminée.
