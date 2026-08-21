@@ -2,183 +2,189 @@
 import java.awt.Color;
 
 /**
+ * Cercle modelise un cercle dans le plan avec un centre un rayon et une couleur.
  *
  * @author Ilies Benmansour
  */
-public class Cercle {
+public class Cercle implements Mesurable2D {
 
+	/** La valeur de pi utilise dans les calculs. */
+	public static final double PI = Math.PI;
+
+	/** Le centre du cercle. */
 	private Point centre;
+
+	/** Le rayon du cercle strictement positif. */
 	private double rayon;
-	private Color color;
-	private static final double PI = Math.PI;
+
+	/** La couleur du cercle. */
+	private Color couleur;
 
 	/**
-	 * Construire un cercle grace a son centre et son rayon
+	 * Construire un cercle a partir de son centre et de son rayon la couleur par defaut est bleu.
 	 *
-	 * @param centre centre du cercle
-	 * @param rayon  rayon du cercle
+	 * @param centre le centre du cercle
+	 * @param rayon le rayon du cercle strictement positif
 	 */
 	public Cercle(Point centre, double rayon) {
-		assert centre != null : "le centre ne doit pas = null";
-		assert rayon > 0 : "le rayon doit etre positif";
+		assert centre != null : "le centre ne doit pas être null";
+		assert rayon > 0 : "le rayon doit être strictement positif";
 		this.centre = new Point(centre.getX(), centre.getY());
 		this.rayon = rayon;
-		this.color = Color.blue;
+		this.couleur = Color.blue;
 	}
 
 	/**
-	 * Construire un cercle a partir de deux point de diametre opposé la couleur par
-	 * défaut est bleu
+	 * Construire un cercle a partir de deux points diametralement opposé et de sa couleur.
 	 *
-	 * @param point1 point1 du diametre
-	 * @param point2 point2 du diametre
-	 */
-	public Cercle(Point point1, Point point2) {
-		assert point1 != null : "le point 1 ne doit pas = null";
-		assert point2 != null : "le point 2 ne doit pas = null";
-		assert point1.distance(point2) > 0 : "les deux point doivent etre different";
-
-		double cx = (point1.getX() + point2.getX()) / 2;
-		double cy = (point1.getY() + point2.getY()) / 2;
-		this.centre = new Point(cx, cy);
-		this.rayon = point1.distance(point2) / 2;
-		this.color = Color.blue;
-	}
-
-	/**
-	 * Construire un cercle a partir de deux point de diametre opposé la couleur
-	 * choisis en parametre
-	 *
-	 * @param point1  point1 du diametre
-	 * @param point2  point2 du diametre
-	 * @param couleur
+	 * @param point1 un point du cercle
+	 * @param point2 le point diametralement opposé a point1
+	 * @param couleur la couleur du cercle
 	 */
 	public Cercle(Point point1, Point point2, Color couleur) {
-		assert point1 != null : "le point 1 ne doit pas = null";
-		assert point2 != null : "le point 2 ne doit pas = null";
-		assert point1.distance(point2) > 0 : "les deux point doivent etre different";
-		assert couleur != null : "la couleur ne doit pas = null";
-		double cx = (point1.getX() + point2.getX()) / 2;
-		double cy = (point1.getY() + point2.getY()) / 2;
-		this.centre = new Point(cx, cy);
-		this.rayon = point1.distance(point2) / 2;
-		this.color = couleur;
+		this(milieu(point1, point2), point1.distance(point2) / 2);
+		assert couleur != null : "la couleur ne doit pas être null";
+		this.couleur = couleur;
 	}
 
 	/**
-	 * Construire un cercle a partir de deux point de diametre opposé
+	 * Construire un cercle a partir de deux points diametralement opposé la couleur par defaut est bleu.
 	 *
-	 * @param point1 point1 du diametre
-	 * @param point2 point2 du diametre
-	 * @return Cercle
+	 * @param point1 un point du cercle
+	 * @param point2 le point diametralement opposé a point1
 	 */
-	public static Cercle creerCercle(Point point1, Point point2) {
-		assert point1 != null : "le point 1 ne doit pas = null";
-		assert point2 != null : "le point 2 ne doit pas = null";
-		assert point1.distance(point2) > 0 : "les deux point doivent etre different";
-		return new Cercle(point1, point2);
+	public Cercle(Point point1, Point point2) {
+		this(point1, point2, Color.blue);
 	}
 
 	/**
-	 * Avoir le centre grace au coordonne de centre avec getY et getX
+	 * Creer un cercle a partir de son centre et d un point du cercle.
 	 *
-	 * @return un nouveau point
+	 * @param centre le centre du cercle
+	 * @param point un point du cercle
+	 * @return le cercle creé
+	 */
+	public static Cercle creerCercle(Point centre, Point point) {
+		assert centre != null : "le centre ne doit pas être null";
+		assert point != null : "le point ne doit pas être null";
+		return new Cercle(centre, centre.distance(point));
+	}
+
+	/**
+	 * Calculer le milieu de deux points.
+	 *
+	 * @param p1 le premier point
+	 * @param p2 le deuxieme point
+	 * @return le milieu de p1 et p2
+	 */
+	private static Point milieu(Point p1, Point p2) {
+		assert p1 != null : "le point 1 ne doit pas être null";
+		assert p2 != null : "le point 2 ne doit pas être null";
+		assert p1.distance(p2) > 0 : "les deux points doivent être différents";
+		double mx = (p1.getX() + p2.getX()) / 2;
+		double my = (p1.getY() + p2.getY()) / 2;
+		return new Point(mx, my);
+	}
+
+	/**
+	 * Obtenir une copie du centre du cercle.
+	 *
+	 * @return une copie du centre
 	 */
 	public Point getCentre() {
 		return new Point(this.centre.getX(), this.centre.getY());
 	}
 
 	/**
-	 * Modifier le centre du cercle
+	 * Changer le centre du cercle.
 	 *
-	 * @param centre
+	 * @param nouveauCentre le nouveau centre
 	 */
-	public void setCentre(Point centre) {
-		this.centre = new Point(centre.getX(), centre.getY());
+	public void setCentre(Point nouveauCentre) {
+		assert nouveauCentre != null : "le centre ne doit pas être null";
+		this.centre = new Point(nouveauCentre.getX(), nouveauCentre.getY());
 	}
 
 	/**
-	 * Avoir rayon
+	 * Obtenir le rayon du cercle.
 	 *
-	 * @return rayon
+	 * @return le rayon
 	 */
 	public double getRayon() {
-		return rayon;
+		return this.rayon;
 	}
 
 	/**
-	 * Modifier le rayon
+	 * Changer le rayon du cercle.
 	 *
-	 * @param rayon
+	 * @param nouveauRayon le nouveau rayon strictement positif
 	 */
-	public void setRayon(double rayon) {
-		assert rayon > 0 : "le rayon doit etre positif";
-		this.rayon = rayon;
+	public void setRayon(double nouveauRayon) {
+		assert nouveauRayon > 0 : "le rayon doit être strictement positif";
+		this.rayon = nouveauRayon;
 	}
 
 	/**
-	 * Avoir le diamettre
+	 * Obtenir le diametre du cercle.
 	 *
-	 * @return le double du rayon
+	 * @return le diametre
 	 */
 	public double getDiametre() {
-		return 2 * rayon;
+		return 2 * this.rayon;
 	}
 
 	/**
-	 * Modifie le diametre mais modifie aussi donc le rayon
+	 * Changer le diametre du cercle.
 	 *
-	 * @param diametre
+	 * @param nouveauDiametre le nouveau diametre strictement positif
 	 */
-	public void setDiametre(double diametre) {
-		assert diametre > 0 : "le diametre doit ere positif";
-		this.rayon = diametre / 2;
+	public void setDiametre(double nouveauDiametre) {
+		assert nouveauDiametre > 0 : "le diamètre doit être strictement positif";
+		this.rayon = nouveauDiametre / 2;
 	}
 
 	/**
-	 * Obtenir la couleur
+	 * Obtenir la couleur du cercle.
 	 *
-	 * @return color
+	 * @return la couleur
 	 */
 	public Color getCouleur() {
-		return color;
+		return this.couleur;
 	}
 
 	/**
-	 * Modifier la couleur
+	 * Changer la couleur du cercle.
 	 *
-	 * @param color
+	 * @param nouvelleCouleur la nouvelle couleur
 	 */
-	public void setCouleur(Color color) {
-		assert color != null : "la couleur ne doit pas = null";
-		this.color = color;
+	public void setCouleur(Color nouvelleCouleur) {
+		assert nouvelleCouleur != null : "la couleur ne doit pas être null";
+		this.couleur = nouvelleCouleur;
 	}
 
 	/**
-	 * Translater le cercle en utilisant la methode de Point
+	 * Translater le cercle.
 	 *
-	 * @param dx abscisse
-	 * @param dy ordonnée
+	 * @param dx deplacement en x
+	 * @param dy deplacement en y
 	 */
 	public void translater(double dx, double dy) {
 		this.centre.translater(dx, dy);
 	}
 
 	/**
-	 * Verifier si un point est dans le cercle
+	 * Savoir si un point est a l interieur du cercle.
 	 *
 	 * @param p le point a tester
-	 * @return true quand le point est dans le cercle sinon false
+	 * @return vrai si p est dans le cercle
 	 */
 	public boolean contient(Point p) {
-		assert p != null : "le point ne doit pas = null";
-		double dx = p.getX() - centre.getX();
-		double dy = p.getY() - centre.getY();
-		return dx * dx + dy * dy <= rayon * rayon;
+		assert p != null : "le point ne doit pas être null";
+		return this.centre.distance(p) <= this.rayon;
 	}
 
 	/**
-	 * Faire la formule du perimetre
+	 * Obtenir le perimetre du cercle.
 	 *
 	 * @return le perimetre
 	 */
@@ -187,16 +193,17 @@ public class Cercle {
 	}
 
 	/**
-	 * Faire la formule de l'air pour un cercle
+	 * Obtenir l aire du cercle.
 	 *
-	 * @return l'air du cercle
+	 * @return l aire
 	 */
 	public double aire() {
-		return this.rayon * this.rayon * PI;
+		return PI * this.rayon * this.rayon;
 	}
 
 	@Override
 	public String toString() {
 		return "C" + this.rayon + "@" + this.centre;
 	}
+
 }
