@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/** Tests unitaires des exceptions du jeu. */
 public class CoupInvalideExceptionTest {
 
 	@Test

@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-/** Tests unitaires de la classe Plateau. */
 public class PlateauTest {
 
 	private Plateau plateau;
@@ -36,12 +35,12 @@ public class PlateauTest {
 	public void testRetirerZeroInterdit() {
 		try {
 			plateau.retirer(0);
-			fail("CoupInvalideException attendue pour 0");
+			fail("on devrait pas pouvoir prendre 0");
 		} catch (CoupInvalideException e) {
 			assertEquals(0, e.getCoup());
 			assertEquals("< 1", e.getProbleme());
 		}
-		// le plateau n'a pas change
+		// le plateau a pas bouge
 		assertEquals(Plateau.NB_ALLUMETTES_DEPART,
 				plateau.getNombreAllumettes());
 	}
@@ -50,7 +49,7 @@ public class PlateauTest {
 	public void testRetirerNegatifInterdit() {
 		try {
 			plateau.retirer(-1);
-			fail("CoupInvalideException attendue pour -1");
+			fail("on devrait pas pouvoir prendre -1");
 		} catch (CoupInvalideException e) {
 			assertEquals(-1, e.getCoup());
 			assertEquals("< 1", e.getProbleme());
@@ -61,7 +60,7 @@ public class PlateauTest {
 	public void testRetirerPlusQuePriseMax() {
 		try {
 			plateau.retirer(Jeu.PRISE_MAX + 1);
-			fail("CoupInvalideException attendue pour PRISE_MAX + 1");
+			fail("on devrait pas pouvoir depasser la prise max");
 		} catch (CoupInvalideException e) {
 			assertEquals(Jeu.PRISE_MAX + 1, e.getCoup());
 			assertEquals("> " + Jeu.PRISE_MAX, e.getProbleme());
@@ -78,7 +77,7 @@ public class PlateauTest {
 		assertEquals(1, plateau.getNombreAllumettes());
 		try {
 			plateau.retirer(2);
-			fail("CoupInvalideException attendue : plus que 1 allumette");
+			fail("il reste qu'une allumette");
 		} catch (CoupInvalideException e) {
 			assertEquals(2, e.getCoup());
 			assertEquals("> 1", e.getProbleme());
@@ -87,7 +86,7 @@ public class PlateauTest {
 
 	@Test
 	public void testVolerIgnorePriseMax() throws CoupInvalideException {
-		// voler permet de depasser PRISE_MAX (utilise en mode confiant)
+		// voler sert au mode confiant il ignore la prise max
 		plateau.voler(11);
 		assertEquals(2, plateau.getNombreAllumettes());
 	}

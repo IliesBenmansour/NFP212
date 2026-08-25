@@ -76,22 +76,20 @@ public class Jouer {
 	 */
 	private static Joueur creerJoueur(String nom, String strategie,
 			Scanner scanner) {
-		if (strategie.equals("naif")) {
-			return new JoueurNaif(nom);
+		switch (strategie) {
+		case "naif":
+			return new Joueur(nom, new StrategieNaive());
+		case "rapide":
+			return new Joueur(nom, new StrategieRapide());
+		case "humain":
+			return new Joueur(nom, new StrategieHumaine(scanner));
+		case "expert":
+			return new Joueur(nom, new StrategieExperte());
+		case "tricheur":
+			return new Joueur(nom, new StrategieTricheuse());
+		default:
+			throw new ConfigurationException("strategie inconnue : " + strategie);
 		}
-		if (strategie.equals("rapide")) {
-			return new JoueurRapide(nom);
-		}
-		if (strategie.equals("humain")) {
-			return new JoueurHumain(nom, scanner);
-		}
-		if (strategie.equals("expert")) {
-			return new JoueurExpert(nom);
-		}
-		if (strategie.equals("tricheur")) {
-			return new JoueurTricheur(nom);
-		}
-		throw new ConfigurationException("strategie inconnue : " + strategie);
 	}
 
 	private static void verifierNombreArguments(String[] args, int debut) {

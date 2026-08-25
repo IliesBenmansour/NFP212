@@ -31,6 +31,11 @@ public class Arbitre {
 	private Document doc;
 	private Element racine;
 
+	// par defaut l'arbitre refuse la triche
+	public Arbitre(Joueur joueur1, Joueur joueur2) {
+		this(joueur1, joueur2, false);
+	}
+
 	/** Creer un arbitre avec les deux joueurs.
 	 *  @param joueur1 le premier joueur
 	 *  @param joueur2 le deuxieme joueur

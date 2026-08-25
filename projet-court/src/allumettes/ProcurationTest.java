@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-/** Tests unitaires de la classe Procuration (proxy du jeu reel). */
 public class ProcurationTest {
 
 	private Plateau plateau;
@@ -35,14 +34,14 @@ public class ProcurationTest {
 		Procuration procuration = new Procuration(plateau, false, "Lea");
 		try {
 			procuration.retirer(1);
-			fail("OperationInterditeException attendue");
+			fail("la triche aurait du etre bloquee");
 		} catch (OperationInterditeException e) {
 			// le nom du tricheur est dans le message
 			assertEquals("Lea", e.getMessage());
 		} catch (CoupInvalideException e) {
-			fail("Mauvaise exception : " + e);
+			fail("mauvaise exception " + e);
 		}
-		// la triche n'a pas modifie le jeu reel
+		// le jeu reel a pas bouge
 		assertEquals(Plateau.NB_ALLUMETTES_DEPART,
 				plateau.getNombreAllumettes());
 	}
@@ -50,15 +49,15 @@ public class ProcurationTest {
 	@Test
 	public void testRetirerAccepteSiConfiant() throws CoupInvalideException {
 		Procuration procuration = new Procuration(plateau, true, "Max");
-		// en mode confiant la triche passe, meme au-dela de PRISE_MAX
+		// en mode confiant la triche passe meme au dela de la prise max
 		procuration.retirer(11);
 		assertEquals(2, plateau.getNombreAllumettes());
 	}
 
 	@Test(expected = CoupInvalideException.class)
 	public void testRetirerConfiantResteValide() throws CoupInvalideException {
+		// meme confiant on peut pas prendre plus que ce qui reste
 		Procuration procuration = new Procuration(plateau, true, "Max");
-		// meme confiant, on ne peut pas prendre plus que ce qui reste
 		procuration.retirer(Plateau.NB_ALLUMETTES_DEPART + 1);
 	}
 

@@ -1,15 +1,14 @@
 package allumettes;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/** Tests unitaires des strategies des joueurs. */
 public class JoueursTest {
 
-	/** Jeu minimal pour tester les strategies avec un nombre
-	 *  d'allumettes arbitraire. */
+	// petit jeu bidon pour tester avec le nombre d'allumettes qu'on veut
 	private static class JeuFixe implements Jeu {
 
 		private int nb;
@@ -32,112 +31,113 @@ public class JoueursTest {
 		}
 	}
 
-	// --- Noms ---
-
 	@Test
 	public void testGetNom() {
-		assertEquals("Riri", new JoueurRapide("Riri").getNom());
-		assertEquals("Fifi", new JoueurNaif("Fifi").getNom());
-		assertEquals("Loulou", new JoueurExpert("Loulou").getNom());
-		assertEquals("Picsou", new JoueurTricheur("Picsou").getNom());
+		assertEquals("Riri", new Joueur("Riri", new StrategieRapide()).getNom());
 	}
 
-	// --- Joueur rapide ---
+	@Test
+	public void testGetPriseDelegueALaStrategie() {
+		Joueur joueur = new Joueur("Riri", new StrategieRapide());
+		assertEquals(Jeu.PRISE_MAX, joueur.getPrise(new JeuFixe(13)));
+	}
+
+	@Test
+	public void testChangementDynamiqueDeStrategie() {
+		// C14 on change la strategie en cours de partie
+		Joueur joueur = new Joueur("Riri", new StrategieRapide());
+		assertEquals(Jeu.PRISE_MAX, joueur.getPrise(new JeuFixe(13)));
+
+		Strategie experte = new StrategieExperte();
+		joueur.setStrategie(experte);
+		assertSame(experte, joueur.getStrategie());
+		assertEquals(1, joueur.getPrise(new JeuFixe(13)));
+		assertEquals("Riri", joueur.getNom());
+	}
 
 	@Test
 	public void testRapidePrendLeMax() {
-		JoueurRapide rapide = new JoueurRapide("Riri");
-		assertEquals(Jeu.PRISE_MAX, rapide.getPrise(new JeuFixe(13)));
-		assertEquals(Jeu.PRISE_MAX, rapide.getPrise(new JeuFixe(3)));
+		Strategie rapide = new StrategieRapide();
+		assertEquals(Jeu.PRISE_MAX, rapide.getPrise(new JeuFixe(13), "Riri"));
+		assertEquals(Jeu.PRISE_MAX, rapide.getPrise(new JeuFixe(3), "Riri"));
 	}
 
 	@Test
 	public void testRapidePrendLeResteSiMoins() {
-		JoueurRapide rapide = new JoueurRapide("Riri");
-		assertEquals(2, rapide.getPrise(new JeuFixe(2)));
-		assertEquals(1, rapide.getPrise(new JeuFixe(1)));
+		Strategie rapide = new StrategieRapide();
+		assertEquals(2, rapide.getPrise(new JeuFixe(2), "Riri"));
+		assertEquals(1, rapide.getPrise(new JeuFixe(1), "Riri"));
 	}
 
-	// --- Joueur naif ---
-
 	@Test
-	public void testNaifPriseToujoursValide() {
-		JoueurNaif naif = new JoueurNaif("Fifi");
+	public void testNaivePriseToujoursValide() {
+		Strategie naive = new StrategieNaive();
 		final int nbTirages = 100;
 		for (int i = 0; i < nbTirages; i++) {
-			int prise = naif.getPrise(new JeuFixe(13));
-			assertTrue("prise >= 1 attendue, obtenu " + prise, prise >= 1);
-			assertTrue("prise <= PRISE_MAX attendue, obtenu " + prise,
-					prise <= Jeu.PRISE_MAX);
+			int prise = naive.getPrise(new JeuFixe(13), "Fifi");
+			assertTrue("prise trop petite " + prise, prise >= 1);
+			assertTrue("prise trop grande " + prise, prise <= Jeu.PRISE_MAX);
 		}
 	}
 
 	@Test
-	public void testNaifNePrendPasPlusQueRestantes() {
-		JoueurNaif naif = new JoueurNaif("Fifi");
+	public void testNaiveNePrendPasPlusQueRestantes() {
+		Strategie naive = new StrategieNaive();
 		final int nbTirages = 100;
 		for (int i = 0; i < nbTirages; i++) {
-			int prise = naif.getPrise(new JeuFixe(2));
-			assertTrue("prise entre 1 et 2 attendue, obtenu " + prise,
-					prise >= 1 && prise <= 2);
+			int prise = naive.getPrise(new JeuFixe(2), "Fifi");
+			assertTrue("prise hors limites " + prise, prise >= 1 && prise <= 2);
 		}
-		// une seule allumette restante : pas le choix
-		assertEquals(1, naif.getPrise(new JeuFixe(1)));
-	}
-
-	// --- Joueur expert ---
-
-	@Test
-	public void testExpertPositionsGagnantes() {
-		JoueurExpert expert = new JoueurExpert("Loulou");
-		// il laisse l'adversaire sur un multiple de 4 plus 1 (1, 5, 9)
-		assertEquals(3, expert.getPrise(new JeuFixe(12)));
-		assertEquals(2, expert.getPrise(new JeuFixe(11)));
-		assertEquals(1, expert.getPrise(new JeuFixe(10)));
-		assertEquals(3, expert.getPrise(new JeuFixe(8)));
-		assertEquals(2, expert.getPrise(new JeuFixe(7)));
-		assertEquals(1, expert.getPrise(new JeuFixe(6)));
-		assertEquals(3, expert.getPrise(new JeuFixe(4)));
-		assertEquals(2, expert.getPrise(new JeuFixe(3)));
-		assertEquals(1, expert.getPrise(new JeuFixe(2)));
+		// une seule restante pas le choix
+		assertEquals(1, naive.getPrise(new JeuFixe(1), "Fifi"));
 	}
 
 	@Test
-	public void testExpertPositionsPerdantes() {
-		JoueurExpert expert = new JoueurExpert("Loulou");
-		// sur 13, 9, 5 ou 1 : perdu face a un expert, il prend 1 pour durer
-		assertEquals(1, expert.getPrise(new JeuFixe(13)));
-		assertEquals(1, expert.getPrise(new JeuFixe(9)));
-		assertEquals(1, expert.getPrise(new JeuFixe(5)));
-		assertEquals(1, expert.getPrise(new JeuFixe(1)));
+	public void testExpertePositionsGagnantes() {
+		Strategie experte = new StrategieExperte();
+		// elle laisse l'adversaire sur 1 5 ou 9
+		assertEquals(3, experte.getPrise(new JeuFixe(12), "Loulou"));
+		assertEquals(2, experte.getPrise(new JeuFixe(11), "Loulou"));
+		assertEquals(1, experte.getPrise(new JeuFixe(10), "Loulou"));
+		assertEquals(3, experte.getPrise(new JeuFixe(8), "Loulou"));
+		assertEquals(2, experte.getPrise(new JeuFixe(7), "Loulou"));
+		assertEquals(1, experte.getPrise(new JeuFixe(6), "Loulou"));
+		assertEquals(3, experte.getPrise(new JeuFixe(4), "Loulou"));
+		assertEquals(2, experte.getPrise(new JeuFixe(3), "Loulou"));
+		assertEquals(1, experte.getPrise(new JeuFixe(2), "Loulou"));
 	}
 
-	// --- Joueur tricheur ---
+	@Test
+	public void testExpertePositionsPerdantes() {
+		Strategie experte = new StrategieExperte();
+		// sur 13 9 5 ou 1 c'est perdu elle prend 1 pour durer
+		assertEquals(1, experte.getPrise(new JeuFixe(13), "Loulou"));
+		assertEquals(1, experte.getPrise(new JeuFixe(9), "Loulou"));
+		assertEquals(1, experte.getPrise(new JeuFixe(5), "Loulou"));
+		assertEquals(1, experte.getPrise(new JeuFixe(1), "Loulou"));
+	}
 
 	@Test
-	public void testTricheurRameneADeuxEtPrendUne() {
-		JoueurTricheur tricheur = new JoueurTricheur("Picsou");
+	public void testTricheuseRameneADeuxEtPrendUne() {
+		Strategie tricheuse = new StrategieTricheuse();
 		JeuFixe jeu = new JeuFixe(13);
-		int prise = tricheur.getPrise(jeu);
-		// il a triche pour laisser 2 allumettes...
+		int prise = tricheuse.getPrise(jeu, "Picsou");
 		assertEquals(2, jeu.getNombreAllumettes());
-		// ... puis annonce une prise officielle de 1
 		assertEquals(1, prise);
 	}
 
 	@Test
-	public void testTricheurNeTrichePasSiInutile() {
-		JoueurTricheur tricheur = new JoueurTricheur("Picsou");
+	public void testTricheuseNeTrichePasSiInutile() {
+		Strategie tricheuse = new StrategieTricheuse();
 		JeuFixe jeu = new JeuFixe(2);
-		int prise = tricheur.getPrise(jeu);
-		// deja 2 restantes : rien a voler, prise normale de 1
+		int prise = tricheuse.getPrise(jeu, "Picsou");
 		assertEquals(2, jeu.getNombreAllumettes());
 		assertEquals(1, prise);
 	}
 
 	@Test(expected = OperationInterditeException.class)
-	public void testTricheurDemasqueParLaProcuration() {
-		JoueurTricheur tricheur = new JoueurTricheur("Picsou");
+	public void testTricheuseDemasqueeParLaProcuration() {
+		Joueur tricheur = new Joueur("Picsou", new StrategieTricheuse());
 		Procuration procuration =
 				new Procuration(new Plateau(), false, "Picsou");
 		tricheur.getPrise(procuration);

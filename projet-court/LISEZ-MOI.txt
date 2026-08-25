@@ -28,9 +28,11 @@ Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
 Pourquoi l'exception OperationInterditeException ne peut pas être définie
 comme vérifiée par le compilateur ?
 --------------------------------------------------------------------------------
+Parce que retirer() est déja déclarer dans l’interface Jeu et on a pas le droit de la modifier. Elle accepte seulement CoupInvalideException
 
-...
+Donc si OperationInterditeException était une exception vérifier, il faudrait l’ajouter dans le throws et donc modifier l’interface
 
+En la faisant hériter de RuntimeException on a pas besoin de changer la signature de retirer() et on peut quand meme la gérer dans Arbitre.
 
 --------------------------------------------------------------------------------
 Expliquer ce qu'il faut faire pour ajouter un nouveau niveau de jeu, par
@@ -38,15 +40,20 @@ exemple la stratégie lente (C13).  Pour plus de précision, on numérotera
 les étapes à faire.
 --------------------------------------------------------------------------------
 
-...
-
+1) Créer une classe StrategieLente qui implémente Strategie
+2) Ecrire son getPrise : return 1 (elle prend toujours une allumette)
+3) Ajouter le cas lent dans le switch de creerJoueur 
+4) Mettre à jour afficherUsage.
 
 --------------------------------------------------------------------------------
 Expliquer ce qui permet, dans votre conception, de changer dynamiquement
 (en cours d'exécution du programme) la stratégie d'un joueur (C14).
 --------------------------------------------------------------------------------
 
-...
+J'utilise le patron Stratégie : le Joueur a un attribut strategie et
+délegue getPrise dessus. Pour changer en cours de partie il suffit
+d'appeler setStrategie avec la nouvelle stratégie, le joueur garde son
+nom.
 
 
 =====[ Explications ]===========================================================
