@@ -22,6 +22,13 @@ public class PlateauTest {
 	}
 
 	@Test
+	public void testNombreInitialQuelconque() {
+		// C9 le jeu marche avec un autre nombre de depart
+		assertEquals(20, new Plateau(20).getNombreAllumettes());
+		assertEquals(1, new Plateau(1).getNombreAllumettes());
+	}
+
+	@Test
 	public void testRetirerValide() throws CoupInvalideException {
 		plateau.retirer(2);
 		assertEquals(11, plateau.getNombreAllumettes());

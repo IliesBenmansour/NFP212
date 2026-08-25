@@ -8,7 +8,12 @@ public class Plateau implements Jeu {
 	private int nbAllumettes;
 
 	public Plateau() {
-		this.nbAllumettes = NB_ALLUMETTES_DEPART;
+		this(NB_ALLUMETTES_DEPART);
+	}
+
+	// C9 on peut demarrer avec un nombre d'allumettes quelconque
+	public Plateau(int nbAllumettes) {
+		this.nbAllumettes = nbAllumettes;
 	}
 
 	@Override
