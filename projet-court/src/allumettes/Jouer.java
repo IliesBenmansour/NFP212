@@ -28,11 +28,8 @@ public class Jouer {
 
 			Scanner scanner = new Scanner(System.in);
 
-			String[] j1 = args[debut].split("@");
-			String[] j2 = args[debut + 1].split("@");
-
-			Joueur joueur1 = creerJoueur(j1[0], j1[1], scanner);
-			Joueur joueur2 = creerJoueur(j2[0], j2[1], scanner);
+			Joueur joueur1 = parserJoueur(args[debut], scanner);
+			Joueur joueur2 = parserJoueur(args[debut + 1], scanner);
 
 			Plateau jeu = new Plateau();
 			Arbitre arbitre = new Arbitre(joueur1, joueur2, confiant);
@@ -44,6 +41,30 @@ public class Jouer {
 			afficherUsage();
 			System.exit(1);
 		}
+	}
+
+	/** Analyser un argument de la forme nom@strategie et creer le joueur
+	 *  correspondant. Leve ConfigurationException si l'argument est mal
+	 *  forme (manque @, nom vide ou strategie vide).
+	 *  @param arg l'argument du joueur
+	 *  @param scanner le scanner partage
+	 *  @return le joueur cree
+	 *  @throws ConfigurationException si l'argument est invalide
+	 */
+	private static Joueur parserJoueur(String arg, Scanner scanner) {
+		String[] parts = arg.split("@");
+		if (parts.length != 2) {
+			throw new ConfigurationException("Joueur mal forme : " + arg);
+		}
+		String nom = parts[0];
+		String strategie = parts[1];
+		if (nom.isEmpty()) {
+			throw new ConfigurationException("Nom non defini : " + arg);
+		}
+		if (strategie.isEmpty()) {
+			throw new ConfigurationException("Strategie non definie : " + arg);
+		}
+		return creerJoueur(nom, strategie, scanner);
 	}
 
 	/** Creer le Joueur correspondant a une strategie.
