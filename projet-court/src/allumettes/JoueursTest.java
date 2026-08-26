@@ -143,4 +143,27 @@ public class JoueursTest {
 		tricheur.getPrise(procuration);
 	}
 
+	@Test
+	public void testSupertricheusePasDemasquee() {
+		// pr3 : il triche a travers la procuration meme en mode pas
+		// confiant, sans lever OperationInterditeException
+		Plateau plateau = new Plateau();
+		Procuration procuration = new Procuration(plateau, false, "Picsou");
+		Joueur joueur = new Joueur("Picsou", new StrategieSupertricheuse());
+		int prise = joueur.getPrise(procuration);
+		assertEquals(2, plateau.getNombreAllumettes());
+		assertEquals(1, prise);
+	}
+
+	@Test
+	public void testSupertricheuseDerniereAllumette() {
+		// sur la derniere allumette il en remet une pour pas perdre
+		Plateau plateau = new Plateau(1);
+		Procuration procuration = new Procuration(plateau, false, "Picsou");
+		int prise = new StrategieSupertricheuse().getPrise(procuration,
+				"Picsou");
+		assertEquals(2, plateau.getNombreAllumettes());
+		assertEquals(1, prise);
+	}
+
 }

@@ -37,12 +37,14 @@ public class Plateau implements Jeu {
 
 	/** Voler des allumettes : retire {@code nb} allumettes sans verifier
 	 *  {@link Jeu#PRISE_MAX}. Reservee a la Procuration en mode confiant.
-	 *  @param nb nombre d'allumettes a voler (1 a nbAllumettes)
-	 *  @throws CoupInvalideException si nb &lt; 1 ou nb &gt; nbAllumettes
+	 *  Depuis le pr3 un nb negatif remet des allumettes sur le jeu (la
+	 *  triche quand il en reste plus qu'une).
+	 *  @param nb nombre d'allumettes a voler (nb != 0 et nb &lt;= nbAllumettes)
+	 *  @throws CoupInvalideException si nb == 0 ou nb &gt; nbAllumettes
 	 */
 	void voler(int nb) throws CoupInvalideException {
-		if (nb < 1) {
-			throw new CoupInvalideException(nb, "< 1");
+		if (nb == 0) {
+			throw new CoupInvalideException(nb, "= 0");
 		}
 		if (nb > this.nbAllumettes) {
 			throw new CoupInvalideException(nb, "> " + this.nbAllumettes);

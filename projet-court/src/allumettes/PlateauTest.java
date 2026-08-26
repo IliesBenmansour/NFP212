@@ -108,4 +108,12 @@ public class PlateauTest {
 		plateau.voler(0);
 	}
 
+	@Test
+	public void testVolerNegatifRemet() throws CoupInvalideException {
+		// pr3 : tricher sur la derniere allumette = en remettre une
+		plateau.voler(-1);
+		assertEquals(Plateau.NB_ALLUMETTES_DEPART + 1,
+				plateau.getNombreAllumettes());
+	}
+
 }

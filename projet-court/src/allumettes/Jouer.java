@@ -35,6 +35,10 @@ public class Jouer {
 			Arbitre arbitre = new Arbitre(joueur1, joueur2, confiant);
 			arbitre.arbitrer(jeu);
 
+			// sans ca le programme se termine pas quand on a joué
+			// avec swing (le thread de swing tourne encore derriere)
+			System.exit(0);
+
 		} catch (ConfigurationException e) {
 			System.out.println();
 			System.out.println("Erreur : " + e.getMessage());
@@ -69,7 +73,8 @@ public class Jouer {
 
 	/** Creer le Joueur correspondant a une strategie.
 	 *  @param nom le nom du joueur
-	 *  @param strategie la strategie (naif, rapide, humain, expert, tricheur)
+	 *  @param strategie la strategie (naif, rapide, humain, expert,
+	 *      tricheur, supertricheur, swing)
 	 *  @param scanner le scanner partage (pour le joueur humain)
 	 *  @return le joueur cree
 	 *  @throws ConfigurationException si la strategie est inconnue
@@ -87,6 +92,10 @@ public class Jouer {
 			return new Joueur(nom, new StrategieExperte());
 		case "tricheur":
 			return new Joueur(nom, new StrategieTricheuse());
+		case "swing":
+			return new Joueur(nom, new StrategieSwing());
+		case "supertricheur":
+			return new Joueur(nom, new StrategieSupertricheuse());
 		default:
 			throw new ConfigurationException("strategie inconnue : " + strategie);
 		}
@@ -108,7 +117,8 @@ public class Jouer {
 		System.out.println("\n" + "Usage :"
 				+ "\n\t" + "java allumettes.Jouer [-confiant] joueur1 joueur2"
 				+ "\n\t\t" + "joueur est de la forme nom@strategie"
-				+ "\n\t\t" + "strategie = naif | rapide | expert | humain | tricheur"
+				+ "\n\t\t" + "strategie = naif | rapide | expert | humain"
+					   + " | tricheur | supertricheur | swing"
 				+ "\n"
 				+ "\n\t" + "Exemple :"
 				+ "\n\t" + "	java allumettes.Jouer Xavier@humain "
