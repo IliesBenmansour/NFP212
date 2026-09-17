@@ -6,14 +6,13 @@ Suppositions faites :
  - jeuReel     = class allumettes.Plateau
 
 
-Time: 0,014
+Time: 0,018
 There was 1 failure:
 1) testerJeuReel(FormeC9Test)
-java.lang.AssertionError: allumettes.Plateau : C9 non respectée.
+java.lang.AssertionError: allumettes.Plateau : Pourquoi définir un constructeur par défaut ?
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertNotNull(Assert.java:712)
-	at FormeC9Test.verifierJeuReel(FormeC9Test.java:18)
+	at FormeC9Test.verifierJeuReel(FormeC9Test.java:22)
 	at FormeC9Test.testerJeuReel(FormeC9Test.java:42)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)

@@ -6,13 +6,14 @@ Suppositions faites :
  - jeuReel     = class allumettes.Plateau
 
 
-Time: 0,024
+Time: 0,038
 There were 2 failures:
 1) testerProcuration(FormeProxyTest)
-java.lang.AssertionError: allumettes.Procuration : Pourquoi plusieurs attributs ?
+java.lang.AssertionError: allumettes.Procuration.retirer : Est-il logique qu'elle dise pouvoir propager CoupInvalideException ?
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
-	at FormeProxyTest.verifierProcuration(FormeProxyTest.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at FormeProxyTest.verifierProcuration(FormeProxyTest.java:29)
 	at FormeProxyTest.testerProcuration(FormeProxyTest.java:57)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
